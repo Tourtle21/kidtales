@@ -10,6 +10,17 @@ export const getImage = async () => {
 
 
 export const getBulkImages = async () => {
-  const res = await Promise.all(Array(10).fill(getImage()))
-  return res
-}
+  const arrayOfPromises = [];
+
+  for (let i = 0; i < 10; i++) {
+    arrayOfPromises.push(getImage());
+  }
+
+  try {
+    const responses = await Promise.all(arrayOfPromises);
+    console.log("All responses:", responses);
+    return responses;
+  } catch (error) {
+    console.error("Error making multiple calls:", error);
+  }
+};
