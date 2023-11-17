@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
+
 export default function Home() {
   const [ages, setAges] = useState("")
   const [lessons, setLessons] = useState("")
@@ -49,19 +50,19 @@ export default function Home() {
           
 
           <div className="inputs">
-            <input placeholder="Children's Age:" value={ages} onChange={(e) => setAges(e.value)} className="generate-input" />
-            <input placeholder="Themes/Lesson’s Taught:" value={lessons} onChange={(e) => setLessons(e.value)} className="generate-input" />
-            <input placeholder="Art Style:" value={style} onChange={(e) => setStyle(e.value)} className="generate-input" />
-            <input placeholder="Character Name(s):"value={names} onChange={(e) => setNames(e.value)} className="generate-input" />
-            <input placeholder="World Setting (Fairies, Animals, Family, Space etc.."value={genre} onChange={(e) => setGenre(e.value)} className="generate-input" />
-            <input placeholder="Do You Want Slade in the Story??      Yes  or  Yes" value={slade} onChange={(e) => setSlade(e.value)} className="generate-input" />
+            <input placeholder="Children's Age:" value={ages} onChange={(e) => setAges(e.target.value)} className="generate-input" />
+            <input placeholder="Themes/Lesson’s Taught:" value={lessons} onChange={(e) => setLessons(e.target.value)} className="generate-input" />
+            <input placeholder="Art Style:" value={style} onChange={(e) => setStyle(e.target.value)} className="generate-input" />
+            <input placeholder="Character Name(s):"value={names} onChange={(e) => setNames(e.target.value)} className="generate-input" />
+            <input placeholder="World Setting (Fairies, Animals, Family, Space etc.."value={genre} onChange={(e) => setGenre(e.target.value)} className="generate-input" />
+            <input placeholder="Do You Want Slade in the Story??      Yes  or  Yes" value={slade} onChange={(e) => setSlade(e.target.value)} className="generate-input" />
           </div>
           <div className="submitContainer">
             <Link href={{
                 pathname: "/book",
-                state: {
+                query: {
                     ages, lessons, style, names, genre, slade
-                }
+                },
               }}>
               <button className="submit">Submit</button>
             </Link>
