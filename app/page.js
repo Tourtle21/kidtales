@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Home() {
+  const [ages, setAges] = useState("")
+  const [lessons, setLessons] = useState("")
+  const [style, setStyle] = useState("")
+  const [names, setNames] = useState("")
+  const [genre, setGenre] = useState("")
+  const [slade, setSlade] = useState("")
   return (
     <main className="">
       <div className="hero-image flex justify-center bg-black">
@@ -43,12 +49,22 @@ export default function Home() {
           
 
           <div className="inputs">
-            <input className="" />
-            <input className="" />
-            <input className="" />
-            <input className="" />
-            <input className="" />
-            <input className="" />
+            <input placeholder="Children's Age:" value={ages} onChange={(e) => setAges(e.value)} className="generate-input" />
+            <input placeholder="Themes/Lesson’s Taught:" value={lessons} onChange={(e) => setLessons(e.value)} className="generate-input" />
+            <input placeholder="Art Style:" value={style} onChange={(e) => setStyle(e.value)} className="generate-input" />
+            <input placeholder="Character Name(s):"value={names} onChange={(e) => setNames(e.value)} className="generate-input" />
+            <input placeholder="World Setting (Fairies, Animals, Family, Space etc.."value={genre} onChange={(e) => setGenre(e.value)} className="generate-input" />
+            <input placeholder="Do You Want Slade in the Story??      Yes  or  Yes" value={slade} onChange={(e) => setSlade(e.value)} className="generate-input" />
+          </div>
+          <div className="submitContainer">
+            <Link href={{
+                pathname: "/book",
+                state: {
+                    ages, lessons, style, names, genre, slade
+                }
+              }}>
+              <button className="submit">Submit</button>
+            </Link>
           </div>
         </div>
     </main>
