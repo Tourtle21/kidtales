@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Home() {
@@ -39,6 +39,17 @@ export default function Home() {
 
         <div className="content-container red p-4">
           <h1 className="text-2xl font-bold text-white">Let's Get Started</h1>
+          <p className="text-s text-white">We want to make creating your personalized book as easy and fun as possible. You don't have to fill out every section of the form if you're in a hurry or not sure about certain details. Our magical team is here to work wonders, and we can craft an awesome book with the information you provide. The additional options are there for those who want to add a bit more flair or tailor the story even more to your liking. So, feel free to sprinkle in the details you'd like, and leave the rest to us – your fantastic story awaits!</p>
+          
+
+          <div className="inputs">
+            <input className="" />
+            <input className="" />
+            <input className="" />
+            <input className="" />
+            <input className="" />
+            <input className="" />
+          </div>
         </div>
     </main>
   )
