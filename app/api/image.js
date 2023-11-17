@@ -1,7 +1,7 @@
 
 export const getImage = async () => {
   try {
-    const res = await fetch("https://b9bb-199-79-53-246.ngrok.io/image", { method: "GET", cache: 'no-store' })
+    const res = await fetch("https://84db-199-79-53-246.ngrok.io/image", { method: "GET", cache: 'no-store' })
     return await res.json()
   } catch (error) {
     console.log(error)
