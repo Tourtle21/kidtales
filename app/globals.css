@@ -16,10 +16,13 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-}
 .top {
   background: black;
   height: 10px;
+}
+
+.hero-image {
+  height: 400px;
+  width: 100vw;
+  position: relative;
 }

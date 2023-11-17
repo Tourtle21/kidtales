@@ -4,14 +4,15 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="">
-      <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="hero-image">
+        <Image
+            src="/images/hero.png"
+            alt="Next.js Logo"
+            height="300"
+            width="1000"
+            priority
+          />
+        </div>
     </main>
   )
 }
