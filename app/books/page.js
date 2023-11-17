@@ -1,6 +1,6 @@
 import Book from '../components/Book'
 
-export default function Books() {
+export default function BooksPage() {
   const books = [
     {
       title: 'The Portal',

@@ -1,19 +1,29 @@
-import BookPage from '../components/BookPage'
+"use client"
+import StoryPage from '../components/StoryPage'
+import { useEffect, useState } from 'react'
+import { getBulkImages, getImage } from '../api/image'
 
-export default function Book() {
-  const bookContent = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...',
-  ]
+
+export default function BookPage() {
+  const [imageList, setImageList] = useState([])
+  const [image, setImage] = useState(null)
+  const [pageNumber, setPageNumber] = useState(0)
+  const text = 'This is a test'
+  useEffect(() => {
+    async function fetchData() {
+      const pics = await getBulkImages()
+      setImageList(pics.map(pic => pic.url))
+    }
+    fetchData()
+  }, [])
   return (
     <div style={styles.bookContainer}>
       <div style={styles.book}>
-        <div style={styles.page}>
-          <BookPage content={bookContent} />
+        <div style={styles.bookPage}>
+          <StoryPage imageUrl={imageList[0]} text={text} />
         </div>
-        <div style={styles.page}>
-          <BookPage content={bookContent} />
+        <div style={styles.bookPage}>
+          <StoryPage imageUrl={imageList[1]} text={text}/>
         </div>
       </div>
     </div>
@@ -28,13 +38,14 @@ const styles = {
   },
   book: {
     width: "100%",
-    height: "700px",
+    height: "600px",
     border: "1px solid #ccc",
     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
     display: "flex"
   },
-  page: {
+  bookPage: {
     width: "50%",
+    height: "100%",
     border: "1px solid #ccc"
   }
 }
