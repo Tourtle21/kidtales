@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -52,9 +53,11 @@ export default function Home() {
               -&gt;
             </span>
           </h2>
+          <Link href="/generate">
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             Find in-depth information about Next.js features and API.
           </p>
+          </Link>
         </a>
 
         <a
