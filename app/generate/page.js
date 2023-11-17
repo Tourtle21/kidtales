@@ -3,8 +3,9 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      This is the generate page
+    <main className="flex min-h-screen items-center justify-between p-24">
+      <input className="text-slate-400" placeholder='What story do you want?'/>
+      <button className="text-black bg-slate-400 rounded p-0.5">Generate</button>
     </main>
   )
 }
