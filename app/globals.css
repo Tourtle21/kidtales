@@ -17,12 +17,76 @@
 }
 
 .top {
+  position: fixed;
+  left: 0;
   background: black;
   height: 10px;
+  width: 100vw;
+}
+html {
+  display: flex;
+  justify-content: center;
+}
+body {
+  max-width: 1500px;
 }
 
 .hero-image {
-  height: 400px;
-  width: 100vw;
+  /* height: 350px; */
+  max-height: 350px;
+  width: 100%;
   position: relative;
 }
+
+.inner-text {
+  position: absolute;
+  left: 8vw;
+  top: 3vw;
+  font-size: 2.5vw;
+}
+.small-inner-text {
+  position: absolute;
+  top: 8vw;
+  left: 3vw;
+  font-size: 1vw;
+}
+
+.inner-button {
+  position: absolute;
+  bottom: 5vw;
+  left: 3vw;
+  font-size: 1vw;
+  background: white;
+  padding: 5px 8px;
+}
+
+.content-container {
+  margin-top: 20px;
+}
+
+.nav-item {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.book-card {
+  /* height: 23vw; */
+  width: 25vw;
+  color: white;
+  padding: 10px 15px;
+}
+
+.blue {
+  background: #0A77BA;
+}
+
+.red {
+  background: #D04E2E;
+}
+
+.green {
+  background:#749674;
+}
+ 
