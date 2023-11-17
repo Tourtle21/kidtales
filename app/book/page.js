@@ -24,12 +24,11 @@ const styles = {
   bookContainer: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    height: "100vh"
+    alignItems: "center"
   },
   book: {
-    width: "80%",
-    height: "80%",
+    width: "100%",
+    height: "700px",
     border: "1px solid #ccc",
     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
     display: "flex"

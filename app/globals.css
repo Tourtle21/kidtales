@@ -29,6 +29,7 @@ html {
 }
 body {
   max-width: 1500px;
+  width: 80vw;
 }
 
 .hero-image {

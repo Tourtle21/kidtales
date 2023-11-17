@@ -5,9 +5,9 @@ export default function Nav() {
     <>
     <div className="top"></div>
     <nav className="flex place-content-around px-8 py-5">
-        <div className="nav-item">My Books</div>
+        <Link className="nav-item" href='/books'>My Books</Link>
         <div className="nav-item">New Book</div>
-        <div className="font-bold text-2xl nav-item">Kid Tails</div>
+        <Link className="font-bold text-2xl nav-item" href='/'>Kid Tails</Link>
         <div className="nav-item">Login</div>
         <button className="nav-item">Sign Up</button>
     </nav>
