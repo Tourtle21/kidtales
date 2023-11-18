@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getBulkImages, getImage, realGetBulkImages, realGetImage } from '../api/image'
 import { getStory, realGetStory } from '../api/story'
 import { useSearchParams } from 'next/navigation'
+import Image from 'next/image'
 
 export default function BookPage(props) {
   const [imageUrls, setImageUrls] = useState([])
@@ -44,7 +45,26 @@ export default function BookPage(props) {
     setStartPage(startPage + nextPage)
     setEndPage(endPage + nextPage)
   }
+
+  console.log(imageUrls, imageUrls == [])
+
   return (
+    <>
+    {(imageUrls.length == 0 || storyList.length == 0) ? 
+    
+    <div className="flex items-center flex-col">
+      <h1 className="text-3xl font-bold">Creating Your Story....</h1>
+    <Image
+    src="/images/giphy.gif"
+    alt="Next.js Logo"
+    height="500"
+    width="500"
+    priority
+  />
+    </div>
+
+    : 
+    
     <div style={styles.bookContainer}>
       <div style={styles.book}>
         <div style={styles.bookPage}>
@@ -67,6 +87,9 @@ export default function BookPage(props) {
         </div>
       </div>
     </div>
+    }
+
+    </>
   )
 }
 
