@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { getBulkImages, getImage, realGetBulkImages, realGetImage } from '../api/image'
 import { getStory, realGetStory } from '../api/story'
 import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
+import Gif from 'next/image'
 
 export default function BookPage(props) {
   const [imageUrls, setImageUrls] = useState([])
@@ -25,9 +25,10 @@ export default function BookPage(props) {
       const story = await realGetStory(options)
       const sentences = story.message.content.slice(1).split("- ")
       const withDetails = sentences.map(s => s + options.style)
-      const pics = await realGetImage(withDetails[0])
-      setStoryList(sentences.map(s => s.replace(/\{.*\}/, '')))
-      setImageUrls([pics])
+      const pics = await realGetBulkImages(withDetails)
+      const regex = /{[^}]*}/g
+      setStoryList(sentences.map(s => s.replace(regex, '')))
+      setImageUrls(pics)
     }
     fetchData()
   }, [])
@@ -40,7 +41,6 @@ export default function BookPage(props) {
   useEffect(() => {
     preloadImages();
   }, [imageUrls]);
-console.log(startPage, endPage)
   const changePageNumber = (nextPage) => {
     setStartPage(startPage + nextPage)
     setEndPage(endPage + nextPage)
@@ -54,13 +54,13 @@ console.log(startPage, endPage)
     
     <div className="flex items-center flex-col">
       <h1 className="text-3xl font-bold">Creating Your Story....</h1>
-    <Image
-    src="/images/giphy.gif"
-    alt="Next.js Logo"
-    height="500"
-    width="500"
-    priority
-  />
+    <Gif
+      src="/images/giphy.gif"
+      alt="Next.js Logo"
+      height="500"
+      width="500"
+      priority
+    />
     </div>
 
     : 

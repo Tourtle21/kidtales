@@ -32,7 +32,7 @@ export const getBulkImages = async (sentences) => {
 
 export const realGetImage = async (sentence) => {
   const response = await openai.images.generate({
-    model: "dall-e-2",
+    model: "dall-e-3",
     prompt: sentence,
     n: 1,
     size: "1024x1024",
