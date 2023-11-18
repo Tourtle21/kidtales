@@ -8,7 +8,9 @@ export default function StoryPage(props) {
     if (props.pageNumber > 0 && props.pageNumber < 9) {
       return (
         <div style={styles.button}>
+          <div></div>
           <button onClick={changePageNumber}>Flip Page</button>
+          <div>{props.pageNumber}</div>
         </div>
       )
     }
@@ -38,14 +40,18 @@ const styles = {
     height: '100%'
   },
   text: {
-    paddingBottom: '20px'
+    paddingBottom: '20px',
+    width: '100%',
+    textAlign: 'left',
+    paddingLeft: '20px'
   },
   imageStyle: {
     height: '90%',
     width: '90%'
   },
   button: {
+    width: '100%',
     display: 'flex',
-    alignItems: 'flex-end'
+    justifyContent: 'space-between'
   }
 }

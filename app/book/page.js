@@ -39,7 +39,7 @@ export default function BookPage(props) {
   useEffect(() => {
     preloadImages();
   }, [imageUrls]);
-  console.log(startPage, endPage)
+console.log(startPage, endPage)
   const changePageNumber = (nextPage) => {
     setStartPage(startPage + nextPage)
     setEndPage(endPage + nextPage)
@@ -78,14 +78,18 @@ const styles = {
   },
   book: {
     width: "100%",
-    height: "600px",
-    border: "1px solid #ccc",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-    display: "flex"
+    height: "700px",
+    border: "8px solid #8B0000",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    marginTop: "30px",
+    marginBottom: "30px"
   },
   bookPage: {
     width: "50%",
     height: "100%",
-    border: "1px solid #ccc"
+    border: "2px solid #ccc",
+    backgroundColor: '#fcf8f2',
+    paddingTop: '20px'
   }
 }
