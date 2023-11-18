@@ -2,11 +2,10 @@ import React from 'react';
 
 export default function StoryPage(props) {
   const changePageNumber = () => {
-    console.log(props.nextPage)
     props.changePageNumber(props.nextPage)
   }
   const renderNextPageButton = () => {
-    if (props.nextPage != -1 && props.nextPage != 10) {
+    if (props.pageNumber > 0 && props.pageNumber < 9) {
       return (
         <div style={styles.button}>
           <button onClick={changePageNumber}>Flip Page</button>
@@ -36,10 +35,10 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '20px',
-    height: '100%',
+    height: '100%'
   },
   text: {
-    height: '10%'
+    paddingBottom: '20px'
   },
   imageStyle: {
     height: '90%',

@@ -2,37 +2,67 @@
 import StoryPage from '../components/StoryPage'
 import { useEffect, useState } from 'react'
 import { getBulkImages, getImage } from '../api/image'
+import { getStory, realGetStory } from '../api/story'
 import { useSearchParams } from 'next/navigation'
 
 export default function BookPage(props) {
-  const [imageList, setImageList] = useState([])
+  const [imageUrls, setImageUrls] = useState([])
   const [storyList, setStoryList] = useState([])
-  const [pageNumber, setPageNumber] = useState(0)
-  const text = 'This is a test'
+  const [startPage, setStartPage] = useState(0)
+  const [endPage, setEndPage] = useState(1)
   const searchParams = useSearchParams()
-  console.log(searchParams.get("names"))
+  const options = {
+    names: searchParams.get("names"),
+    ages: searchParams.get("ages"),
+    lessons: searchParams.get("lessons"),
+    style: searchParams.get("style"),
+    slade: searchParams.get("slade"),
+    genre: searchParams.get("genre")
+  }
   useEffect(() => {
     async function fetchData() {
       const pics = await getBulkImages()
-      //const story = await getStory()
-      setStoryList(["hi", "bye"])
-      setImageList(pics.map(pic => pic.url))
+      const story = await realGetStory(options)
+      console.log(story.message)
+      setStoryList(story.message.content.slice(1).split("- "))
+      setImageUrls(pics.map(pic => pic.url))
     }
     fetchData()
   }, [])
-  const startPage = pageNumber % 2
-  const endPage = startPage + 1
+  const preloadImages = () => {
+    imageUrls.forEach((imageUrl) => {
+      const img = new Image()
+      img.src = imageUrl
+    })
+  }
+  useEffect(() => {
+    preloadImages();
+  }, [imageUrls]);
+  console.log(startPage, endPage)
   const changePageNumber = (nextPage) => {
-    setPageNumber(nextPage);
+    setStartPage(startPage + nextPage)
+    setEndPage(endPage + nextPage)
   }
   return (
     <div style={styles.bookContainer}>
       <div style={styles.book}>
         <div style={styles.bookPage}>
-          <StoryPage imageUrl={imageList[startPage]} text={storyList[startPage]} changePageNumber={changePageNumber} nextPage={pageNumber - 1}/>
+          <StoryPage
+            imageUrl={imageUrls[startPage]}
+            text={storyList[startPage]}
+            changePageNumber={changePageNumber}
+            nextPage={-2}
+            pageNumber={startPage}
+          />
         </div>
         <div style={styles.bookPage}>
-          <StoryPage imageUrl={imageList[endPage]} text={storyList[endPage]} changePageNumber={changePageNumber} nextPage={pageNumber + 1}/>
+          <StoryPage
+            imageUrl={imageUrls[endPage]}
+            text={storyList[endPage]}
+            changePageNumber={changePageNumber}
+            nextPage={2}
+            pageNumber={endPage}
+          />
         </div>
       </div>
     </div>
