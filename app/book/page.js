@@ -1,7 +1,7 @@
 "use client"
 import StoryPage from '../components/StoryPage'
 import { useEffect, useState } from 'react'
-import { getBulkImages, getImage } from '../api/image'
+import { getBulkImages, getImage, realGetBulkImages } from '../api/image'
 import { getStory, realGetStory } from '../api/story'
 import { useSearchParams } from 'next/navigation'
 
@@ -21,11 +21,12 @@ export default function BookPage(props) {
   }
   useEffect(() => {
     async function fetchData() {
-      const pics = await getBulkImages()
       const story = await realGetStory(options)
-      console.log(story.message)
-      setStoryList(story.message.content.slice(1).split("- "))
-      setImageUrls(pics.map(pic => pic.url))
+      const sentences = story.message.content.slice(1).split("- ")
+      const withDetails = sentences.map(s => s + options.style)
+      const pics = await realGetBulkImages(withDetails)
+      setStoryList(sentences.map(s => s.replace(/\{.*\}/, '')))
+      setImageUrls(pics)
     }
     fetchData()
   }, [])

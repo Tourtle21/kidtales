@@ -14,11 +14,11 @@ export const getImage = async () => {
   }
 }
 
-export const getBulkImages = async () => {
+export const getBulkImages = async (sentences) => {
   const arrayOfPromises = [];
 
-  for (let i = 0; i < 10; i++) {
-    arrayOfPromises.push(getImage())
+  for (let i = 0; i < length(sentences); i++) {
+    arrayOfPromises.push(getImage(sentences[i]))
   }
 
   try {
@@ -30,23 +30,23 @@ export const getBulkImages = async () => {
   }
 }
 
-export const realGetImage = async () => {
+export const realGetImage = async (sentence) => {
   const response = await openai.createImage({
-    model: "dall-e-3",
-    prompt: "a white siamese cat",
+    model: "dall-e-2",
+    prompt: sentence,
     n: 1,
-    size: "1024x1024",
+    size: "256x256",
   })
   image_url = response.data.data[0].url
   console.log(image_url)
   return image_url
 }
 
-export const realGetBulkImages = async () => {
+export const realGetBulkImages = async (sentences) => {
   const arrayOfPromises = [];
 
-  for (let i = 0; i < 10; i++) {
-    arrayOfPromises.push(realGetImage());
+  for (let i = 0; i < sentences.length; i++) {
+    arrayOfPromises.push(realGetImage(sentences[i]))
   }
 
   try {
