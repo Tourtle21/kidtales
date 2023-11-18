@@ -17,7 +17,7 @@ export const getImage = async () => {
 export const getBulkImages = async (sentences) => {
   const arrayOfPromises = [];
 
-  for (let i = 0; i < length(sentences); i++) {
+  for (let i = 0; i < 1; i++) {
     arrayOfPromises.push(getImage(sentences[i]))
   }
 
@@ -31,13 +31,14 @@ export const getBulkImages = async (sentences) => {
 }
 
 export const realGetImage = async (sentence) => {
-  const response = await openai.createImage({
+  const response = await openai.images.generate({
     model: "dall-e-2",
     prompt: sentence,
     n: 1,
-    size: "256x256",
+    size: "1024x1024",
   })
-  image_url = response.data.data[0].url
+  console.log(response)
+  const image_url = response.data[0].url
   console.log(image_url)
   return image_url
 }
